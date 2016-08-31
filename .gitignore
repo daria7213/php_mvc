@@ -1,0 +1,6 @@
+.idea/
+access.log
+error.log
+www/nbproject
+www/node_modules
+www/vendor

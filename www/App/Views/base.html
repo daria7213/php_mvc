@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title%}{% endblock %}</title>
+    <link href="../../assets/dist/css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+  </head>
+  <body>
+  {% block menu %}
+  <div class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#main-nav" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse" id="main-nav">
+        <ul class="container nav navbar-nav">
+
+          <li {% if url == "/" %}class="active" {% endif %}>
+            <a href="/">Home</a>
+          </li>
+          <li {% if url == "/posts" %}class="active" {% endif %}>
+            <a href="/posts">Posts</a>
+          </li>
+          <li {% if url == "/user/register" %}class="active" {% endif %}>
+          <a href="/user/register">Register</a>
+          </li>
+          {% if session.user_id is defined %}
+          <li class="pull-right"><a href="#">Singed in as {{ session.user_name }}</a></li>
+          <li class="pull-right"><a href="/user/logout">Logout</a></li>
+          {% else %}
+          <li class = "pull-right {% if url == "/user/login" %}active {% endif %}">
+          <a href="/user/login">Login</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+  <div class="container">
+    {% block body %}
+    {% endblock %}
+  </div>
+  </body>
+</html>
